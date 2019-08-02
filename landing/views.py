@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from datetime import date
 from xml.etree import ElementTree as ET
-tree = ET.parse('direct.xml')
+tree = ET.parse('templates/testdata/direct.xml')
 root = tree.getroot()
 from .forms import SubscribersForm
 

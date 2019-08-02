@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<direct>
+  <rule priority="0" table="nat" ipv="ipv4" chain="POSTROUTING">-o tun1 -j MASQUERADE</rule>
+  <rule priority="0" table="nat" ipv="ipv4" chain="POSTROUTING">-o tun2 -j MASQUERADE</rule>
+  <rule priority="0" table="nat" ipv="ipv4" chain="POSTROUTING">-o ens192 -j MASQUERADE</rule>
+  <rule priority="10" table="filter" ipv="ipv4" chain="FORWARD">-i tun2 -s 10.254.253.0/24 -o ens192 -d 193.232.104.70 -j ACCEPT</rule>
+  <rule priority="10" table="filter" ipv="ipv4" chain="FORWARD">-i tun2 -s 10.254.253.0/24 -o ens192 -d 0.0.0.0/0 -j DROP</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -o ens192 -d 193.232.104.70/32 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.9/32 -o ens192 -d 172.16.210.53 -j ACCEPT</rule>
+  <rule priority="10" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -o ens192 -j DROP</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.33/32 -o ens192 -d 172.16.202.135 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.13/32 -o ens192 -d 172.16.210.15 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.17/32 -o ens192 -d 172.16.210.80 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.21/32 -o ens192 -d 0.0.0.0/0 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.25/32 -o ens192 -d 0.0.0.0/0 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.29/32 -o ens192 -d 0.0.0.0/0 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.33/32 -o ens192 -d 0.0.0.0/0 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.37/32 -o ens192 -d 0.0.0.0/0 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.41/32 -o ens192 -d 0.0.0.0/0 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i ens192 -o tun1 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i ens192 -o tun2 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.45/32 -o ens192 -d 172.16.210.107 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.49/32 -o ens192 -d 172.16.210.185 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.53/32 -o ens192 -d 0.0.0.0/0 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.53/32 -o ens192 -d 172.16.210.186 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.57/32 -o ens192 -d 172.16.210.145 -j ACCEPT</rule>
+  <rule priority="9" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -m udp -p udp -s 172.16.215.0/23 -o ens192 -d 172.16.208.10/32 --dport 53 -j ACCEPT</rule>
+  <rule priority="9" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -m udp -p udp -s 172.16.215.0/23 -o ens192 -d 172.16.208.20/32 --dport 53 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.61/32 -o ens192 -d 172.16.210.19 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.65/32 -o ens192 -d 172.16.208.0/22 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.65/32 -o ens192 -d 172.16.200.0/24 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.69/32 -o ens192 -d 172.16.210.155 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.73/32 -o ens192 -d 172.16.210.203 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.77/32 -o ens192 -d 172.16.210.134 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.81/32 -o ens192 -d 172.16.210.24 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.85/32 -o ens192 -d 172.16.210.69 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.89/32 -o ens192 -d 172.16.210.33 -j ACCEPT</rule>
+  <rule priority="0" table="filter" ipv="ipv4" chain="FORWARD">-i tun1 -s 172.16.215.105/32 -o ens192 -d 172.16.210.198 -j ACCEPT</rule>
+</direct>

@@ -1,9 +1,16 @@
 from django.shortcuts import render
 from datetime import date
+from xml.etree import ElementTree as ET
+tree = ET.parse('direct.xml')
+root = tree.getroot()
 from .forms import SubscribersForm
 
 
+
 def landing(request):
+    for xmlout in root.findall('.direct'):
+        print(xmlout.find('rule').text)
+
     form = SubscribersForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
@@ -12,4 +19,8 @@ def landing(request):
         save_form = form.save()
 
     today = date.today()
+
+
     return render(request, 'landing/landing.html', locals())
+
+

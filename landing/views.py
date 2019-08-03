@@ -24,3 +24,9 @@ def landing(request):
     return render(request, 'landing/landing.html', locals())
 
 
+def index(request):
+
+
+    return render(request, 'index.html', locals())
+
+

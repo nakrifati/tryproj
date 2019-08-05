@@ -18,6 +18,8 @@ def landing(request):
 
     today = date.today()
 
+    allrules = Rule.objects.all()
+    context = {'allrules': allrules}
 
     return render(request, 'landing/landing.html', locals())
 
@@ -41,9 +43,6 @@ def action_url(request):
             p = Rule(priority=priority, table=table, ipv=ipv, chain=chain, rule_value=type_tag.text)
             p.save()
             return redirect('landing/landing.html')
-
-        allrules = Rule.objects.all()
-        context = {'allrules': allrules}
 
     return render(request, 'landing/landing.html', locals())
 

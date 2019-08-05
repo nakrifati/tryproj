@@ -10,5 +10,13 @@ class SubscriberAdmin (admin.ModelAdmin):
     class Meta:
         model = Subscriber
 
-admin.site.register(Subscriber, SubscriberAdmin)
 
+class RuleAdmin (admin.ModelAdmin):
+    list_display = [field.name for field in Rule._meta.fields]
+
+    class Meta:
+        model = Rule
+
+
+admin.site.register(Subscriber, SubscriberAdmin)
+admin.site.register(Rule, RuleAdmin)

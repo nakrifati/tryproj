@@ -38,8 +38,30 @@
     </p>
 </div>
 
-<p>{{ xmlout }}</p>
+<a href="{% url 'admin:index' %}">link to admin panel</a>
 
+<h1>List of Rules</h1>
+<table border="1" width="600">
+<tr>
+<td>Priority</td>
+<td>Table</td>
+<td>ipv</td>
+<td>Chain</td>
+<td>Rule</td>
+</tr>
+
+{% for rule in allrules %}
+<tr>
+    <td>{{ rule.priority }}</td>
+    <td>{{ rule.table }}</td>
+    <td>{{ rule.ipv }}</td>
+    <td>{{ rule.chain }}</td>
+    <td>{{ rule.rule_value }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<p class="row">{{ ar.0 }}</p>
 
 
 

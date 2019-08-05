@@ -40,6 +40,10 @@
 
 <a href="{% url 'admin:index' %}">link to admin panel</a>
 
+<form action='action_url' method='POST'>{% csrf_token %}
+<button type='submit'>Load Rules</button>
+</form>
+
 <h1>List of Rules</h1>
 <table border="1" width="600">
 <tr>

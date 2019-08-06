@@ -27,7 +27,12 @@
                 <h4 class="small font-weight-bold">Today is {{ today }}</h4>
             </div>
         </div>
-<p></p></div>
+<p class="row"></p>
+<form action='action_url' method='POST'>{% csrf_token %}
+<button type='submit' class="btn btn-primary">Load Rules</button>
+</form>
+
+    </div>
 
 
 <div>
@@ -43,14 +48,12 @@
         </form>
     </p>
 </div><p></p>
-<p></p><div class="border">
+<p class="row"></p>
+
+
+    <div class="border">
 <a href="{% url 'admin:index' %}">link to admin panel</a>
-<p></p>
-<p></p>
-<form action='action_url' method='POST'>{% csrf_token %}
-<button type='submit' class="btn btn-primary">Load Rules</button>
-</form>
-<p></p></div>
+<p class="row"></p></div>
 <h1>List of Rules</h1>
 
 <table border="1" width="600">

@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -13,7 +13,7 @@
   <!-- Custom fonts for this template-->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static "style.css" %}">
 
 </head>
 
@@ -27,10 +27,12 @@
                 <h4 class="small font-weight-bold">Today is {{ today }}</h4>
             </div>
         </div>
-<p></p>
-<div class="row">
+<p></p></div>
+
+
+<div>
     <p>
-        <form action="" method="post">{% csrf_token %}
+        <form action="" method="post" class="form-inline">{% csrf_token %}
         {{ form.as_p }}
             <div>
                 <button type="submit" class="btn btn-primary">Send</button>
@@ -38,15 +40,16 @@
         </form>
     </p>
 </div><p></p>
-<p></p><div class="row"></div>
+<p></p><div class="border">
 <a href="{% url 'admin:index' %}">link to admin panel</a>
-<p></p></div>
+<p></p>
 <p></p>
 <form action='action_url' method='POST'>{% csrf_token %}
 <button type='submit' class="btn btn-primary">Load Rules</button>
 </form>
-<p></p>
+<p></p></div>
 <h1>List of Rules</h1>
+
 <table border="1" width="600">
 <tr>
 <td>Priority</td>
@@ -67,7 +70,6 @@
 {% endfor %}
 </table>
 
-</div>
 </div>
 
 <p class="row">{{ ar.0 }}</p>

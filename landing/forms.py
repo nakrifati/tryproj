@@ -9,3 +9,8 @@ class SubscribersForm(forms.ModelForm):
         exclude = [""]
 
 
+class RuleForm(forms.ModelForm):
+
+    class Meta:
+        model = Rule
+        exclude = [""]

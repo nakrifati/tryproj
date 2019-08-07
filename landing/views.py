@@ -32,6 +32,8 @@ def index(request):
 def action_url(request):
     if request.method == "POST":
         print(request.POST)
+        rules = Rule.objects.all()
+        rules.delete()
         # ar = []
         # ar.clear()
         for type_tag in root.iter('rule'):

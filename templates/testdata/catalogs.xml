@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf8'?>
+<direct><rule chain="POSTROUTING" ipv="ipv4" priority="0" table="nat">o tun1 -j MASQUERADE d</rule></direct>

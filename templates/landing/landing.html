@@ -50,6 +50,9 @@
 </div><p></p>
 <p class="row"></p>
 
+<form action='{% url 'export_to_xml' %}' method='POST'>{% csrf_token %}
+<button type='submit' class="btn btn-primary">Load to XML</button>
+</form>
 
     <div class="border">
 <a href="{% url 'admin:index' %}">link to admin panel</a>

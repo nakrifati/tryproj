@@ -4,13 +4,10 @@ from .forms import RuleForm
 from datetime import date
 from django.shortcuts import redirect
 from django.http import HttpResponse
-from django.core import serializers
-from django.core.files import File
 from xml.etree import ElementTree as ET
-from xml.dom import minidom
-import os
 
 root = ET.parse('templates/testdata/direct.xml').getroot()
+
 
 
 def landing(request):
@@ -43,10 +40,10 @@ def action_url(request):
         # ar = []
         # ar.clear()
         for type_tag in root.iter('rule'):
-            priority = type_tag.get('priority')
             table = type_tag.get('table')
             ipv = type_tag.get('ipv')
             chain = type_tag.get('chain')
+            priority = type_tag.get('priority')
             # ar.append(type_tag.text)
             print(type_tag.text)
             p = Rule(priority=priority, table=table, ipv=ipv, chain=chain, rule_value=type_tag.text)
@@ -71,20 +68,30 @@ def export_to_xml(request):
         # output.append(userelement)
         # with open(filename, "w") as fh:
         #     output.write(fh)
-
+        allrules = Rule.objects.all()
         """
             Создаем XML файл.
+            
             """
         root = ET.Element("direct")
-        rule_xml = ET.Element("rule")
-        root.append(rule_xml)
+        #rule_xml = ET.Element("rule")
+        #root.append(rule_xml)
 
         # создаем дочерний суб-элемент.
-        rule_xml.set("priority", "0")
-        rule_xml.set("table", "nat")
-        rule_xml.set("ipv", "ipv4")
-        rule_xml.set("chain", "POSTROUTING")
-        rule_xml.text = "o tun1 -j MASQUERADE d"
+        # rule_xml.set("priority", "0")
+        # rule_xml.set("table", "nat")
+        # rule_xml.set("ipv", "ipv4")
+        # rule_xml.set("chain", "POSTROUTING")
+        # rule_xml.text = "o tun1 -j MASQUERADE d"
+
+        for rule in allrules:
+            rule_xml = ET.Element("rule")
+            root.append(rule_xml)
+            rule_xml.set("priority", rule.priority)
+            rule_xml.set("chain", rule.chain)
+            rule_xml.set("ipv", rule.ipv)
+            rule_xml.set("table", rule.table)
+            rule_xml.text = rule.rule_value
 
         open('templates/testdata/catalogs.xml', 'w').close()
         print(ET.tostring(root, encoding='utf8', method='xml').decode(), file=open("templates/testdata/catalogs.xml", "a"))

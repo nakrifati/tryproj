@@ -30,7 +30,8 @@ def index(request):
 
 
 def action_url(request):
-    if request.method('action_url'):
+    if request.method == "POST":
+        print(request.POST)
         # ar = []
         # ar.clear()
         for type_tag in root.iter('rule'):
@@ -42,8 +43,9 @@ def action_url(request):
             print(type_tag.text)
             p = Rule(priority=priority, table=table, ipv=ipv, chain=chain, rule_value=type_tag.text)
             p.save()
-            return redirect('landing/landing.html')
 
-    return render(request, 'landing/landing.html', locals())
+    return redirect('landing/landing.html')
+
+
 
 

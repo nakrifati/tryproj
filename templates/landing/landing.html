@@ -28,7 +28,7 @@
             </div>
         </div>
 <p class="row"></p>
-<form action='action_url' method='POST'>{% csrf_token %}
+<form action='{% url 'action_url' %}' method='POST'>{% csrf_token %}
 <button type='submit' class="btn btn-primary">Load Rules</button>
 </form>
 
@@ -38,7 +38,7 @@
 <div>
     <p>
     <h1 class="small font-weight-bold">Add New Rule</h1>
-        <form action="" method="post" class="form-inline">{% csrf_token %}
+        <form action="add_rule" method="post" class="form-inline">{% csrf_token %}
         <div class="form-group>"><label>Priority: </label>{{ form.priority }}</div>
         <div class="form-group>"><label>Table: </label>{{ form.table }}</div>
             <div class="form-group>"><label>IPV: </label>{{ form.ipv }}</div>

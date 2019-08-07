@@ -14,3 +14,5 @@ class RuleForm(forms.ModelForm):
     class Meta:
         model = Rule
         exclude = [""]
+
+

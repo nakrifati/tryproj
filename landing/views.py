@@ -72,5 +72,18 @@ def export_to_xml(request):
         open('templates/testdata/catalogs.xml', 'w').close()
         print(ET.tostring(root, encoding='utf8', method='xml').decode(), file=open("templates/testdata/catalogs.xml", "a"))
 
-        return HttpResponse("All done!")
+        """replace string"""
+
+        f = open('templates/testdata/catalogs.xml', 'r')
+        filedata = f.read()
+        f.close()
+
+        newdata = filedata.replace("utf8", "utf-8")
+
+        f = open('templates/testdata/catalogs.xml', 'w')
+        f.write(newdata)
+        f.close()
+
+        #return HttpResponse("All done!")
+        return redirect('landing/')
 

@@ -87,7 +87,7 @@ def export_to_xml(request):
         f.close()
 
         #return HttpResponse("All done!")
-        messages.info(request, 'Your password has been changed successfully!')
+        messages.info(request, 'Rules have been exported!')
         return HttpResponseRedirect('landing/')
 
 

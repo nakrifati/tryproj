@@ -4,6 +4,8 @@ from .forms import RuleForm
 from datetime import date
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from django.contrib import messages
+from django.http import HttpResponseRedirect
 from xml.etree import ElementTree as ET
 
 root = ET.parse('templates/testdata/direct.xml').getroot()
@@ -85,5 +87,7 @@ def export_to_xml(request):
         f.close()
 
         #return HttpResponse("All done!")
-        return redirect('landing/')
+        messages.info(request, 'Your password has been changed successfully!')
+        return HttpResponseRedirect('landing/')
+
 

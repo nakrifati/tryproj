@@ -22,7 +22,7 @@
 <div class="container">
         <div class="row">
             <div class="col-lg-4 offset-lg-4">
-                <h1 class="h4 text-gray-900 mb-4">Firewall Rules Page</h1>
+                <h1 class="h4 text-gray-900 mb-4">Firewall-cmd Web Administration Tool Page</h1>
                 <h4 class="small font-weight-bold">Today is {{ today }}</h4>
             </div>
         </div>
@@ -32,29 +32,33 @@
 </form>
 
 <div>
-    <p>
-        <h1 class="small font-weight-bold">Add New Rule</h1>
-            <form action="add_rule" method="post" class="form-inline">{% csrf_token %}
-                <div class="form-group>"><label>Priority: </label>{{ form.priority }}</div>
-                <div class="form-group>"><label>Table: </label>{{ form.table }}</div>
-                <div class="form-group>"><label>IPV: </label>{{ form.ipv }}</div>
-                <div class="form-group>"><label>Chain: </label>{{ form.chain }}</div>
-                <div class="form-group>"><label>Value: </label>{{ form.rule_value }}</div>
+
+        <h2 class="">Add New Rule</h2>
+            <form action="add_rule" method="post" class="form-group">{% csrf_token %}
+                <div class=""><label>Priority:  </label>{{ form.priority }}</div>
+                <div class=""><label>Table:  </label>{{ form.table }}</div>
+                <div class=""><label>IPV:  </label>{{ form.ipv }}</div>
+                <div class=""><label>Chain:  </label>{{ form.chain }}</div>
+                <div class=""><label>Value:  </label>{{ form.rule_value }}</div>
+                <p></p>
                 <button type="submit" class="btn btn-primary">Add Rule</button>
             </form>
-    </p>
+
 </div>
 
 <p class="row"></p>
 
 <form action='{% url 'export_to_xml' %}' method='POST'>{% csrf_token %}
-    <button type='submit' class="btn btn-primary">Export to XML</button>
+    <button type='submit' class="btn btn-success">Export to XML</button>
 </form>
 
-    <div class="border">
-        <a href="{% url 'admin:index' %}">Link to Admin Panel</a>
-        <p class="row"></p>
-    </div>
+        <p></p>
+
+        <div class="col-12">
+        <form action="{% url 'admin:index' %}">
+            <button type="submit" class="btn btn-danger">Admin Panel</button>
+        </form>
+        </div>
 
 {% if messages %}
 <ul class="messages">

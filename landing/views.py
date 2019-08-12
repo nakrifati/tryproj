@@ -65,25 +65,27 @@ def export_to_xml(request):
         for rule in allrules:
             rule_xml = ET.Element("rule")
             root.append(rule_xml)
-            rule_xml.set("priority", rule.priority)
             rule_xml.set("chain", rule.chain)
             rule_xml.set("ipv", rule.ipv)
             rule_xml.set("table", rule.table)
+            rule_xml.set("priority", rule.priority)
             rule_xml.text = rule.rule_value
 
         open('templates/testdata/catalogs.xml', 'w').close()
         print(ET.tostring(root, encoding='utf8', method='xml').decode(), file=open("templates/testdata/catalogs.xml", "a"))
 
-        """replace string"""
+        """replace strings"""
 
         f = open('templates/testdata/catalogs.xml', 'r')
         filedata = f.read()
         f.close()
 
         newdata = filedata.replace("utf8", "utf-8")
+        newdata2 = newdata.replace("</rule>", "</rule> \n")
+        newdata3 = newdata2.replace("t>", "t> \n")
 
         f = open('templates/testdata/catalogs.xml', 'w')
-        f.write(newdata)
+        f.write(newdata3)
         f.close()
 
         #return HttpResponse("All done!")

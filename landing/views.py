@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect
 from xml.etree import ElementTree as ET
 
 root = ET.parse('templates/testdata/direct.xml').getroot()
+target_xml = 'templates/testdata/catalogs.xml'
 
 
 
@@ -71,12 +72,12 @@ def export_to_xml(request):
             rule_xml.set("priority", rule.priority)
             rule_xml.text = rule.rule_value
 
-        open('templates/testdata/catalogs.xml', 'w').close()
+        open(target_xml, 'w').close()
         print(ET.tostring(root, encoding='utf8', method='xml').decode(), file=open("templates/testdata/catalogs.xml", "a"))
 
         """replace strings"""
 
-        f = open('templates/testdata/catalogs.xml', 'r')
+        f = open(target_xml, 'r')
         filedata = f.read()
         f.close()
 
@@ -84,9 +85,13 @@ def export_to_xml(request):
         newdata2 = newdata.replace("</rule>", "</rule> \n")
         newdata3 = newdata2.replace("t>", "t> \n")
 
-        f = open('templates/testdata/catalogs.xml', 'w')
+        f = open(target_xml, 'w')
         f.write(newdata3)
         f.close()
+
+        import os
+        my_cmd = 'firewall-cmd --reload'
+        os.system(my_cmd)
 
         #return HttpResponse("All done!")
         messages.info(request, 'Rules have been exported!')

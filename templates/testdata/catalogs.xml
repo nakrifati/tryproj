@@ -37,5 +37,6 @@
 <rule chain="FORWARD" ipv="ipv4" priority="0" table="filter">-i tun1 -s 172.16.5.105/32 -o ens192 -d 172.16.0.8 -j ACCEPT</rule> 
 <rule chain="erwerwe" ipv="wrwerw" priority="we4twe" table="ewrwerwer">rwerewrwwr</rule> 
 <rule chain="21321312" ipv="13213" priority="123213" table="123213">123213</rule> 
+<rule chain="dfgdgdgfg" ipv="gfdgdg" priority="dfgdfg" table="dfgdfgdf">d</rule> 
 </direct> 
 

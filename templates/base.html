@@ -17,21 +17,14 @@
 
 <div class="container-fluid">
     <h1>Firewall-cmd Web Administration Tool</h1>
-        <div class="col-12">
-        <form action="{% url 'admin:index' %}">
-            <button type="submit" class="btn btn-danger">Admin Panel</button>
-        </form>
-        </div>
 
-        <p></p>
-
-        <div class="col-12">
-        <form action="{% url 'landing' %}">
-            <button type="submit" class="btn btn-success">Firewall Rules Panel</button>
-        </form>
-        </div>
+    <main>
+    {% block content %}
+    {% endblock %}
+    </main>
 
 </div>
+
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 </body>
 </html>

@@ -7,12 +7,13 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from xml.etree import ElementTree as ET
+from django.contrib.auth.decorators import login_required
 
 root = ET.parse('templates/testdata/direct.xml').getroot()
 target_xml = 'templates/testdata/catalogs.xml'
 
 
-
+@login_required
 def landing(request):
 
     form = RuleForm(request.POST or None)
@@ -31,7 +32,7 @@ def landing(request):
 
 def index(request):
 
-    return render(request, 'index.html', locals())
+    return render(request, 'home.html', locals())
 
 
 def action_url(request):

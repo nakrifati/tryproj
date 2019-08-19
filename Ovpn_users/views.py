@@ -1,6 +1,6 @@
 from django.shortcuts import render
-#from .models import Rule
-#from .forms import RuleForm
+from landing.models import Ouser
+from landing.forms import OuserForm
 from datetime import date
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -8,14 +8,18 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from xml.etree import ElementTree as ET
 from django.contrib.auth.decorators import login_required
-from os import walk
-import os
 from os import listdir
 from os.path import isfile, join
+from django.db import connection
+
 
 
 @login_required
 def ovpn_users(request):
+
+    allouser = Ouser.objects.all()
+    context = {'allouser': allouser}
+
     return render(request, 'ovpn_users/ovpn_users.html', locals())
 
 
@@ -44,10 +48,14 @@ def list_ovpn_user(request):
 
         for FILE in only_files:
             with open('C:/app/openvpn/ccd/' + FILE) as afile:
-                data = afile.readline()
-                user_ip = data.split()
-                print(FILE)
-                print(user_ip[1])
+                    data = afile.readline()
+                    user_ip = data.split()
+                    ip = user_ip[1]
+                    print(FILE)
+                    print(ip)
+                    o_user = Ouser(name=FILE, ip=ip)
+                    o_user.save()
+                    
 
     return HttpResponseRedirect('ovpn_users/ovpn_users.html')
 

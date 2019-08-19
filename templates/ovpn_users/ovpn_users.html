@@ -49,7 +49,30 @@
     <button type='submit' class="btn btn-success">Show OpenVPN Users</button>
     </form>
 
+    <h1>List of OpenVPN Users</h1>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">IP</th>
+        </tr>
+    </thead>
+{% for Ouser in allouser %}
+
+<tbody>
+    <tr>
+        <td>{{ ouser.name }}</td>
+        <td>{{ ouser.ip }}</td>
+    </tr>
+</tbody>
+{% endfor %}
+</table>
+
     </div>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 </body>
 </html>

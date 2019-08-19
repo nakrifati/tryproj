@@ -1,12 +1,12 @@
 from django.db import models
 
 
-class Subscriber(models.Model):
-    email = models.EmailField(blank=True)
-    name = models.CharField(max_length=128, blank=True)
-
-    def __str__(self):
-        return "%s %s %s" % (self.name, self.email, self.id)
+# class Subscriber(models.Model):
+#     email = models.EmailField(blank=True)
+#     name = models.CharField(max_length=128, blank=True)
+#
+#     def __str__(self):
+#         return "%s %s %s" % (self.name, self.email, self.id)
 
 
 class Rule(models.Model):
@@ -18,3 +18,14 @@ class Rule(models.Model):
 
     def __str__(self):
         return "%s %s %s %s %s" % (self.priority, self.table, self.ipv, self.chain, self.rule_value)
+
+
+class Ouser(models.Model):
+    name = models.CharField(max_length=256, default='')
+    ip = models.CharField(max_length=256, default='')
+
+    def __str__(self):
+        return "%s %s" % (self.name, self.ip)
+
+
+

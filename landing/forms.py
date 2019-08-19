@@ -2,11 +2,11 @@ from django import forms
 from .models import *
 
 
-class SubscribersForm(forms.ModelForm):
-
-    class Meta:
-        model = Subscriber
-        exclude = [""]
+# class SubscribersForm(forms.ModelForm):
+#
+#     class Meta:
+#         model = Subscriber
+#         exclude = [""]
 
 
 class RuleForm(forms.ModelForm):
@@ -15,4 +15,10 @@ class RuleForm(forms.ModelForm):
         model = Rule
         exclude = [""]
 
+
+class OuserForm(forms.ModelForm):
+
+    class Meta:
+        model = Ouser
+        exclude = [""]
 

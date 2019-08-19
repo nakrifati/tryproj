@@ -2,13 +2,13 @@ from django.contrib import admin
 from .models import *
 
 
-class SubscriberAdmin (admin.ModelAdmin):
-    list_display = [field.name for field in Subscriber._meta.fields]
-    list_filter = ["name"]
-    search_fields = ["name"]
-
-    class Meta:
-        model = Subscriber
+# class SubscriberAdmin (admin.ModelAdmin):
+#     list_display = [field.name for field in Subscriber._meta.fields]
+#     list_filter = ["name"]
+#     search_fields = ["name"]
+#
+#     class Meta:
+#         model = Subscriber
 
 
 class RuleAdmin (admin.ModelAdmin):
@@ -18,5 +18,13 @@ class RuleAdmin (admin.ModelAdmin):
         model = Rule
 
 
-admin.site.register(Subscriber, SubscriberAdmin)
+class OuserAdmin (admin.ModelAdmin):
+    list_display = [field.name for field in Ouser._meta.fields]
+
+    class Meta:
+        model = Ouser
+
+
+#admin.site.register(Subscriber, SubscriberAdmin)
 admin.site.register(Rule, RuleAdmin)
+admin.site.register(Ouser, OuserAdmin)

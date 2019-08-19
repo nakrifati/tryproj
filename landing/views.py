@@ -50,6 +50,7 @@ def action_url(request):
             print(type_tag.text)
             p = Rule(priority=priority, table=table, ipv=ipv, chain=chain, rule_value=type_tag.text)
             p.save()
+            p.clean()
 
     return redirect('landing/')
 

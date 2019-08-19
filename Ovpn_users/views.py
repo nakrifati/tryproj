@@ -44,6 +44,8 @@ def create_ovpn_user(request):
 
 def list_ovpn_user(request):
     if request.method == 'POST':
+        ousers_clear = Ouser.objects.all()
+        ousers_clear.delete()
         only_files = [f for f in listdir("C:/app/openvpn/ccd") if isfile(join("C:/app/openvpn/ccd", f))]
 
         for FILE in only_files:
@@ -55,6 +57,8 @@ def list_ovpn_user(request):
                     print(ip)
                     o_user = Ouser(name=FILE, ip=ip)
                     o_user.save()
+                    o_user.clean()
+        messages.info(request, 'User Lists is updated!')
                     
 
     return HttpResponseRedirect('ovpn_users/ovpn_users.html')

@@ -34,7 +34,7 @@ def create_ovpn_user(request):
     if request.method == 'POST':
         import os
         my_comd = 'print ' + username + ' ' + out_ip
-        print(my_comd)
+        print(my_comd, file=open("templates/testdata/log.txt", "a"))
         os.system(my_comd)
 
     # return HttpResponse("All done!")
@@ -53,8 +53,8 @@ def list_ovpn_user(request):
                     data = afile.readline()
                     user_ip = data.split()
                     ip = user_ip[1]
-                    print(FILE)
-                    print(ip)
+                    print(FILE, file=open("templates/testdata/log.txt", "a"))
+                    print(ip, file=open("templates/testdata/log.txt", "a"))
                     o_user = Ouser(name=FILE, ip=ip)
                     o_user.save()
                     o_user.clean()

@@ -75,7 +75,7 @@ def export_to_xml(request):
             rule_xml.text = rule.rule_value
 
         open(target_xml, 'w').close()
-        print(ET.tostring(root, encoding='utf8', method='xml').decode(), file=open("templates/testdata/catalogs.xml", "a"))
+        print(ET.tostring(root, encoding='utf8', method='xml').decode(), file=open(target_xml, "a"))
 
         """replace strings"""
 

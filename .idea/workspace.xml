@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="750af7a1-d254-41a5-9216-3ef13949fb49" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/testdata/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/templates/testdata/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/landing/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/landing/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/landing/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1156">
-              <caret line="77" column="122" selection-start-line="77" selection-start-column="71" selection-end-line="77" selection-end-column="122" />
+            <state relative-caret-position="476">
+              <caret line="85" column="51" lean-forward="true" selection-start-line="85" selection-start-column="51" selection-end-line="85" selection-end-column="51" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -43,7 +42,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ovpn_users/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="419">
@@ -156,13 +155,13 @@
         <option value="$PROJECT_DIR$/landing/models.py" />
         <option value="$PROJECT_DIR$/landing/admin.py" />
         <option value="$PROJECT_DIR$/templates/landing/landing.html" />
-        <option value="$PROJECT_DIR$/landing/views.py" />
         <option value="$PROJECT_DIR$/templates/ovpn_users/ovpn_users.html" />
         <option value="$PROJECT_DIR$/ovpn_users/views.py" />
+        <option value="$PROJECT_DIR$/landing/views.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1040" />
@@ -319,12 +318,12 @@
       <workItem from="1565685723318" duration="23548000" />
       <workItem from="1566225124580" duration="160000" />
       <workItem from="1566226853925" duration="4922000" />
-      <workItem from="1566288035609" duration="1421000" />
+      <workItem from="1566288035609" duration="2036000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107194000" />
+    <option name="totallyTimeSpent" value="107809000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -337,6 +336,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2153518" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -475,16 +475,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/landing/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="77" column="122" selection-start-line="77" selection-start-column="71" selection-end-line="77" selection-end-column="122" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/testdata/direct.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -534,6 +524,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="419">
           <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/landing/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="85" column="51" lean-forward="true" selection-start-line="85" selection-start-column="51" selection-end-line="85" selection-end-column="51" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>

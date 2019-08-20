@@ -39,7 +39,7 @@ def create_ovpn_user(request):
 
     # return HttpResponse("All done!")
     messages.info(request, 'User Is Added to OpenVPN!')
-    return HttpResponseRedirect('ovpn_users/ovpn_users.html')
+    return list_ovpn_user(request)
 
 
 def list_ovpn_user(request):
@@ -59,7 +59,6 @@ def list_ovpn_user(request):
                     o_user.save()
                     o_user.clean()
         messages.info(request, 'User Lists is updated!')
-                    
 
     return HttpResponseRedirect('ovpn_users/ovpn_users.html')
 

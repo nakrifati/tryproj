@@ -28,6 +28,18 @@
             </div>
         </div>
 
+        <div class="btn-group btn-group-lg" role="group" aria-label="menu">
+        <form action="{% url 'home' %}">
+            <button type="submit" class="btn btn-primary">Home</button>
+        </form>
+<p></p>
+        <form action="{% url 'admin:index' %}">
+            <button type="submit" class="btn btn-danger">Admin Panel</button>
+        </form>
+        </div>
+
+<p></p>
+
 <form action='{% url 'action_url' %}' method='POST'>{% csrf_token %}
     <button type='submit' class="btn btn-primary">Reload Rules</button>
 </form>
@@ -50,12 +62,6 @@
 <p class="row"></p>
 
         <p></p>
-
-        <div class="col-12">
-        <form action="{% url 'admin:index' %}">
-            <button type="submit" class="btn btn-danger">Admin Panel</button>
-        </form>
-        </div>
 
 {% if messages %}
 <ul class="messages">

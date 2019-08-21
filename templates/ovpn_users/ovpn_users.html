@@ -21,6 +21,18 @@
     <h1 class="h2 text-gray-900 mb-4 text-center">OpenVPN User Web Administration Panel</h1>
 
 <p></p>
+
+        <div style="display:inline-block; vertical-align: middle;">
+        <form class="form-inline" action="{% url 'home' %}">
+            <button type="submit" class="btn btn-primary">Home</button>
+        </form>
+<p></p>
+        <form class="form-inline" action="{% url 'admin:index' %}">
+            <button type="submit" class="btn btn-danger">Admin Panel</button>
+        </form>
+        </div>
+
+        <p></p>
     <h4 class="h4 text-gray-900 mb-4">Add New User</h4>
 
 <form action='{% url 'create_ovpn_user' %}' method='POST'>{% csrf_token %}
@@ -32,12 +44,6 @@
 </form>
 
         <p></p>
-
-        <div class="col-12">
-        <form action="{% url 'admin:index' %}">
-            <button type="submit" class="btn btn-danger">Admin Panel</button>
-        </form>
-        </div>
 
 {% if messages %}
 <ul class="messages">

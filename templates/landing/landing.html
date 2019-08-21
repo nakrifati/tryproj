@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard Firewall-cmd Rules</title>
+  <title>Firewall-cmd Web Administration Panel</title>
 
   <!-- Custom fonts for this template-->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -19,10 +19,11 @@
 
 <body id="page-top">
 
+<h1 class="h2 text-gray-900 mb-4 text-center">Firewall-cmd Web Administration Panel</h1>
+
 <div class="container">
         <div class="row">
             <div class="col-lg-4 offset-lg-4">
-                <h1 class="h4 text-gray-900 mb-4">Firewall-cmd Web Administration Tool Page</h1>
                 <h4 class="small font-weight-bold">Today is {{ today }}</h4>
             </div>
         </div>
@@ -33,7 +34,7 @@
 
 <div>
 
-        <h2 class="">Add New Rule</h2>
+        <h2 class="h4 text-gray-900 mb-4">Add New Rule</h2>
             <form action="add_rule" method="post" class="form-group">{% csrf_token %}
                 <div class=""><label>Priority:  </label>{{ form.priority }}</div>
                 <div class=""><label>Table:  </label>{{ form.table }}</div>
@@ -41,16 +42,12 @@
                 <div class=""><label>Chain:  </label>{{ form.chain }}</div>
                 <div class=""><label>Value:  </label>{{ form.rule_value }}</div>
                 <p></p>
-                <button type="submit" class="btn btn-primary">Add Rule</button>
+                <button type="submit" class="btn btn-success">Add Rule</button>
             </form>
 
 </div>
 
 <p class="row"></p>
-
-<form action='{% url 'export_to_xml' %}' method='POST'>{% csrf_token %}
-    <button type='submit' class="btn btn-success">Export to XML</button>
-</form>
 
         <p></p>
 
@@ -70,9 +67,11 @@
 
 <p></p>
 
-<p></p>
+<form action='{% url 'export_to_xml' %}' method='POST'>{% csrf_token %}
+    <button type='submit' class="btn btn-success">Commit Rules</button>
+</form>
 
-<h1>List of Rules</h1>
+<h1 class="h3 text-gray-900 mb-4">List of Rules</h1>
 
 <table class="table table-bordered">
 
@@ -98,6 +97,8 @@
 </tbody>
 {% endfor %}
 </table>
+
+<p></p>
 
 </div>
 

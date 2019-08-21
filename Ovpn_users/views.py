@@ -12,6 +12,7 @@ from os import listdir
 from os.path import isfile, join
 from django.db import connection
 
+CCD_address = 'C:/app/openvpn/ccd/'
 
 
 @login_required
@@ -33,8 +34,8 @@ def create_ovpn_user(request):
 
     if request.method == 'POST':
         import os
-        my_comd = 'print ' + username + ' ' + out_ip
-        print(my_comd, file=open("templates/testdata/log.txt", "a"))
+        my_comd = './new-vpn-user-auto.sh ' + username + ' ' + out_ip
+        print(my_comd, file=open("log.txt", "a"))
         os.system(my_comd)
 
     # return HttpResponse("All done!")
@@ -46,15 +47,15 @@ def list_ovpn_user(request):
     if request.method == 'POST':
         ousers_clear = Ouser.objects.all()
         ousers_clear.delete()
-        only_files = [f for f in listdir("C:/app/openvpn/ccd") if isfile(join("C:/app/openvpn/ccd", f))]
+        only_files = [f for f in listdir(CCD_address) if isfile(join(CCD_address, f))]
 
         for FILE in only_files:
-            with open('C:/app/openvpn/ccd/' + FILE) as afile:
+            with open(CCD_address + FILE) as afile:
                     data = afile.readline()
                     user_ip = data.split()
                     ip = user_ip[1]
-                    print(FILE, file=open("templates/testdata/log.txt", "a"))
-                    print(ip, file=open("templates/testdata/log.txt", "a"))
+                    print(FILE, file=open("log.txt", "a"))
+                    print(ip, file=open("log.txt", "a"))
                     o_user = Ouser(name=FILE, ip=ip)
                     o_user.save()
                     o_user.clean()

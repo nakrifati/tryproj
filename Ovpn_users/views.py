@@ -6,11 +6,13 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from xml.etree import ElementTree as ET
 from django.contrib.auth.decorators import login_required
 from os import listdir
 from os.path import isfile, join
-from django.db import connection
+import telnetlib
+from sys import argv
+import array as arr
+
 
 CCD_address = 'C:/app/openvpn/ccd/'
 
@@ -20,6 +22,34 @@ def ovpn_users(request):
 
     allouser = Ouser.objects.all()
     context = {'allouser': allouser}
+
+    # HOST = "localhost"
+    # QUESTION = "status 3"
+    # tn = telnetlib.Telnet(HOST, 7505)
+    #
+    # tn.read_until(b"OpenVPN Management Interface")
+    # tn.write(QUESTION.encode('ascii') + b"\n")
+    #
+    # tn.write(b"ls\n")
+    # tn.write(b"exit\n")
+    #
+    # users = tn.read_all().decode('ascii')
+    # print(users, file=open('temp.txt', "w"))
+    #
+    # result = users.count('CLIENT_LIST') - 1
+
+    mylines = []
+
+    fh = open('temp.txt')
+    print(fh)
+
+    for line in fh:
+        if "CLIENT_LIST" in line:
+            if "HEADER" not in line:
+                mylines.append(line.rstrip('\n')[11:])
+
+    total_online = 2
+    #total_online = result
 
     return render(request, 'ovpn_users/ovpn_users.html', locals())
 
@@ -62,4 +92,6 @@ def list_ovpn_user(request):
         messages.info(request, 'User Lists is updated!')
 
     return HttpResponseRedirect('ovpn_users/ovpn_users.html')
+
+
 

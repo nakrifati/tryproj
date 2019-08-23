@@ -26,15 +26,15 @@
         <form class="form-inline" action="{% url 'home' %}">
             <button type="submit" class="btn btn-primary">Home</button>
         </form>
+        </div>
 <p></p>
         <form class="form-inline" action="{% url 'admin:index' %}">
             <button type="submit" class="btn btn-danger">Admin Panel</button>
         </form>
-        </div>
+
 
         <p></p>
     <h4 class="h4 text-gray-900 mb-4">Add New User</h4>
-    <p>{{ online_users }}</p>
 
 <form action='{% url 'create_ovpn_user' %}' method='POST'>{% csrf_token %}
     <input type="text" name="username" class="form-control" placeholder="Username" />

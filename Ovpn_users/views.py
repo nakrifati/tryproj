@@ -38,7 +38,7 @@ def ovpn_users(request):
     #
     # result = users.count('CLIENT_LIST') - 1
 
-    mylines = []
+    user_lines = []
 
     fh = open('temp.txt')
     print(fh)
@@ -46,7 +46,7 @@ def ovpn_users(request):
     for line in fh:
         if "CLIENT_LIST" in line:
             if "HEADER" not in line:
-                mylines.append(line.rstrip('\n')[11:])
+                user_lines.append(line.rstrip('\n')[11:])
 
     total_online = 2
     #total_online = result

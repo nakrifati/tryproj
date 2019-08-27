@@ -37,6 +37,10 @@ def ovpn_users(request):
     # print(users, file=open('temp.txt', "w"))
     #
     # result = users.count('CLIENT_LIST') - 1
+    result = -1
+    if result < 0:
+        result = 0
+
 
     user_lines = []
 
@@ -48,8 +52,7 @@ def ovpn_users(request):
             if "HEADER" not in line:
                 user_lines.append(line.rstrip('\n')[11:])
 
-    total_online = 2
-    #total_online = result
+    total_online = result
 
     return render(request, 'ovpn_users/ovpn_users.html', locals())
 

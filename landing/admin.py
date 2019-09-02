@@ -13,6 +13,7 @@ from .models import *
 
 class RuleAdmin (admin.ModelAdmin):
     list_display = [field.name for field in Rule._meta.fields]
+    search_fields = ["rule_value"]
 
     class Meta:
         model = Rule
@@ -20,6 +21,7 @@ class RuleAdmin (admin.ModelAdmin):
 
 class OuserAdmin (admin.ModelAdmin):
     list_display = [field.name for field in Ouser._meta.fields]
+    search_fields = ["name"]
 
     class Meta:
         model = Ouser

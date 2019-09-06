@@ -46,7 +46,6 @@ def action_url(request):
             ipv = type_tag.get('ipv')
             chain = type_tag.get('chain')
             priority = type_tag.get('priority')
-            # ar.append(type_tag.text)
             print(type_tag.text)
             p = Rule(priority=priority, table=table, ipv=ipv, chain=chain, rule_value=type_tag.text)
             p.save()

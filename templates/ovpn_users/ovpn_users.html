@@ -58,22 +58,30 @@
 
         <h1 class="h3 text-gray-900 mb-4">Online OpenVPN Users</h1>
 
-<table class="table table-bordered">
+    <table class="table table-bordered">
 
     <thead>
         <tr>
-            <th scope="col">Name | Real Address | V.Address | V.IPv6 Address | Bytes Received | Bytes Sent | Connected Since | Username | Client ID |Peer ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Real Address</th>
+            <th scope="col">V.Address</th>
+            <th scope="col">Connected Since</th>
         </tr>
     </thead>
-{% for element in user_lines %}
 
+{% for element in users_online %}
 <tbody>
     <tr>
+
         <td>{{ element }}</td>
+        <td>{{ rule.table }}</td>
+        <td>{{ rule.ipv }}</td>
+        <td>{{ rule.chain }}</td>
     </tr>
 </tbody>
 {% endfor %}
 </table>
+
 
     <p>Total Online: {{ total_online }}</p>
     <p></p>

@@ -28,4 +28,14 @@ class Ouser(models.Model):
         return "%s %s" % (self.name, self.ip)
 
 
+class OnlineUser(models.Model):
+    login = models.CharField(max_length=256, default='')
+    r_ip = models.CharField(max_length=256, default='')
+    v_ip = models.CharField(max_length=256, default='')
+    online_since = models.CharField(max_length=256, default='')
+
+    def __str__(self):
+        return "%s %s %s %s" % (self.login, self.r_ip, self.v_ip, self.online_since)
+
+
 

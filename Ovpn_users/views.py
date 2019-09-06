@@ -12,6 +12,7 @@ from os.path import isfile, join
 import telnetlib
 from sys import argv
 import array as arr
+from landing.models import OnlineUser
 
 
 CCD_address = 'C:/app/openvpn/ccd/'
@@ -21,6 +22,7 @@ CCD_address = 'C:/app/openvpn/ccd/'
 def ovpn_users(request):
 
     allouser = Ouser.objects.all()
+    all_online = OnlineUser.objects.all()
     context = {'allouser': allouser}
 
     # HOST = "localhost"
@@ -42,19 +44,21 @@ def ovpn_users(request):
         result = 0
 
     users_online = []
-    user_ip = []
-    v_ip = []
-    con_time = []
 
     fh = open('temp.txt')
+    clear_db_online = OnlineUser.objects.all()
+    clear_db_online.delete()
 
     for line in fh:
         if "CLIENT_LIST" in line:
             if "HEADER" not in line:
-                users_online.append(line.split()[1])
-                user_ip.append(line.split()[2])
-                v_ip.append(line.split()[3])
-                con_time.append(line.split()[7])
+                login = line.split()[1]
+                r_ip = line.split()[2]
+                v_ip = line.split()[3]
+                online_since = line.split()[6:10]
+                save_online = OnlineUser(login=login, r_ip=r_ip, v_ip=v_ip, online_since=online_since)
+                save_online.save()
+                save_online.clean()
 
     total_online = result
 

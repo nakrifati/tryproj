@@ -55,7 +55,7 @@ def ovpn_users(request):
                 login = line.split()[1]
                 r_ip = line.split()[2]
                 v_ip = line.split()[3]
-                online_since = line.split()[6:10]
+                online_since = ' '.join(line.split()[6:10])
                 save_online = OnlineUser(login=login, r_ip=r_ip, v_ip=v_ip, online_since=online_since)
                 save_online.save()
                 save_online.clean()

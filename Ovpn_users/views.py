@@ -1,17 +1,11 @@
 from django.shortcuts import render
 from landing.models import Ouser
-from landing.forms import OuserForm
-from datetime import date
-from django.shortcuts import redirect
-from django.http import HttpResponse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from os import listdir
 from os.path import isfile, join
 import telnetlib
-from sys import argv
-import array as arr
 from landing.models import OnlineUser
 
 
@@ -24,22 +18,28 @@ def ovpn_users(request):
     allouser = Ouser.objects.all()
     all_online = OnlineUser.objects.all()
     context = {'allouser': allouser}
-
-    # HOST = "localhost"
-    # QUESTION = "status 3"
-    # tn = telnetlib.Telnet(HOST, 7505)
-    #
-    # tn.read_until(b"OpenVPN Management Interface")
-    # tn.write(QUESTION.encode('ascii') + b"\n")
-    #
-    # tn.write(b"ls\n")
-    # tn.write(b"exit\n")
-    #
-    # users = tn.read_all().decode('ascii')
-    # print(users, file=open('temp.txt', "w"))
-    #
-    # result = users.count('CLIENT_LIST') - 1
     result = -1
+
+    HOST = "localhost"
+    QUESTION = "status 3"
+    try:
+        tn = telnetlib.Telnet(HOST, 7505)
+
+    except ConnectionRefusedError:
+        messages.info(request, '([WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение), another exception occurred')
+        result = -1
+    else:
+        tn.read_until(b"OpenVPN Management Interface")
+        tn.write(QUESTION.encode('ascii') + b"\n")
+
+        tn.write(b"ls\n")
+        tn.write(b"exit\n")
+
+        users = tn.read_all().decode('ascii')
+        print(users, file=open('temp.txt', "w"))
+
+        result = users.count('CLIENT_LIST') - 1
+
     if result < 0:
         result = 0
 
@@ -79,7 +79,6 @@ def create_ovpn_user(request):
         print(my_comd, file=open("log.txt", "a"))
         os.system(my_comd)
 
-    # return HttpResponse("All done!")
     messages.info(request, 'User Is Added to OpenVPN!')
     return list_ovpn_user(request)
 

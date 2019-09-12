@@ -3,11 +3,11 @@ from .models import Rule
 from .forms import RuleForm
 from datetime import date
 from django.shortcuts import redirect
-from django.http import HttpResponse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from xml.etree import ElementTree as ET
 from django.contrib.auth.decorators import login_required
+import os
 
 root = ET.parse('templates/testdata/direct.xml').getroot()
 target_xml = 'templates/testdata/catalogs.xml'
@@ -58,10 +58,8 @@ def export_to_xml(request):
     if request.method == 'POST':
 
         allrules = Rule.objects.all()
-        """
-            Создаем XML файл.
-            
-            """
+        """  Создаем XML файл.  """
+
         root = ET.Element("direct")
 
         for rule in allrules:
@@ -90,11 +88,9 @@ def export_to_xml(request):
         f.write(newdata3)
         f.close()
 
-        import os
         my_cmd = 'firewall-cmd --reload'
         os.system(my_cmd)
 
-        #return HttpResponse("All done!")
         messages.info(request, 'Rules have been exported!')
         return HttpResponseRedirect('landing/')
 

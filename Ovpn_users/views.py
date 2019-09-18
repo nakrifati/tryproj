@@ -61,6 +61,7 @@ def ovpn_users(request):
                 save_online.clean()
 
     total_online = result
+    fh.close()
 
     return render(request, 'ovpn_users/ovpn_users.html', locals())
 

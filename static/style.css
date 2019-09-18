@@ -26,13 +26,13 @@ img{width:350px;}
 /* Style the submit button */
 .form-inline button {
   padding: 10px 20px;
-  background-color: dodgerblue;
+/*  background-color: dodgerblue; */
   border: 1px solid #ddd;
   color: white;
 }
 
 .form-inline button:hover {
-  background-color: royalblue;
+/*    background-color: royalblue; */
 }
 
 /* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */

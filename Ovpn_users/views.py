@@ -27,7 +27,8 @@ def ovpn_users(request):
         tn = telnetlib.Telnet(HOST, 7505)
 
     except ConnectionRefusedError:
-        messages.info(request, '([WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение), another exception occurred')
+        messages.info(request, '([WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг '
+                               'запрос на подключение), another exception occurred')
         result = -1
     else:
         tn.read_until(b"OpenVPN Management Interface")

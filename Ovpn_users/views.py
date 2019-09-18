@@ -7,6 +7,7 @@ from os import listdir
 from os.path import isfile, join
 import telnetlib
 from landing.models import OnlineUser
+from time import gmtime, strftime
 
 
 CCD_address = 'C:/app/openvpn/ccd/'
@@ -77,7 +78,7 @@ def create_ovpn_user(request):
     if request.method == 'POST':
         import os
         my_comd = './new-vpn-user-auto.sh ' + username + ' ' + out_ip
-        print(my_comd, file=open("log.txt", "a"))
+        print(my_comd + ' ' + strftime("%Y-%m-%d %H:%M:%S", gmtime()), file=open("log.txt", "a"))
         os.system(my_comd)
 
     messages.info(request, 'User Is Added to OpenVPN!')
@@ -95,8 +96,6 @@ def list_ovpn_user(request):
                     data = afile.readline()
                     user_ip = data.split()
                     ip = user_ip[1]
-                    print(FILE, file=open("log.txt", "a"))
-                    print(ip, file=open("log.txt", "a"))
                     o_user = Ouser(name=FILE, ip=ip)
                     o_user.save()
                     o_user.clean()

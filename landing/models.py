@@ -1,5 +1,31 @@
 from django.db import models
 
+Chain_choices = (
+    ('FORWARD','FORWARD'),
+    ('POSTROUTING', 'POSTROUTING'),
+)
+
+ipv_choices = (
+    ('ipv4','ipv4'),
+)
+
+table_choices = (
+    ('filter','filter'),
+    ('nat', 'nat'),
+)
+
+priority_choices = (
+    ('0','0'),
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5'),
+    ('6', '6'),
+    ('7', '7'),
+    ('8', '8'),
+    ('9', '9'),
+)
 
 # class Subscriber(models.Model):
 #     email = models.EmailField(blank=True)
@@ -10,10 +36,10 @@ from django.db import models
 
 
 class Rule(models.Model):
-    priority = models.CharField(max_length=256, default='')
-    table = models.CharField(max_length=256, default='')
-    ipv = models.CharField(max_length=64, default='')
-    chain = models.CharField(max_length=256, default='')
+    priority = models.CharField(max_length=256, choices=priority_choices, default='0')
+    table = models.CharField(max_length=256, choices=table_choices, default='filter')
+    ipv = models.CharField(max_length=64, choices=ipv_choices, default='ipv4')
+    chain = models.CharField(max_length=256, choices=Chain_choices, default='FORWARD')
     rule_value = models.CharField(max_length=256, default='')
 
     def __str__(self):

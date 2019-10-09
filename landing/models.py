@@ -25,6 +25,7 @@ priority_choices = (
     ('7', '7'),
     ('8', '8'),
     ('9', '9'),
+    ('10', '10'),
 )
 
 # class Subscriber(models.Model):

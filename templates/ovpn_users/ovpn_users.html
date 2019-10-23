@@ -18,7 +18,7 @@
 <body id="page-top">
 
     <div class="container">
-    <h1 class="h2 text-gray-900 mb-4 text-center">OpenVPN User Web Administration Panel</h1>
+    <h2 class="h2 text-gray-900 mb-4 text-center">OpenVPN User Web Administration Panel</h2>
 
 <p></p>
 
@@ -34,6 +34,8 @@
 
 
         <p></p>
+        <div class="col-xs-12" style="height:25px;"></div>
+
     <h4 class="h4 text-gray-900 mb-4">Add New User</h4>
 
 <form action='{% url 'create_ovpn_user' %}' method='POST'>{% csrf_token %}
@@ -46,47 +48,51 @@
 
         <p></p>
 
+
+
 {% if messages %}
+    <div class="alert alert-warning">
 <ul class="messages">
     {% for message in messages %}
     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
     {% endfor %}
-</ul>
+</ul></div>
 {% endif %}
 
-    <p></p>
 
-        <h1 class="h3 text-gray-900 mb-4">Online OpenVPN Users</h1>
+    <p></p>
+    <div class="col-xs-12" style="height:25px;"></div>
+
+        <h4 class="h4 text-gray-900 mb-4">Online OpenVPN Users</h4>
 
     <table class="table table-bordered">
-
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Real Address</th>
-            <th scope="col">V.Address</th>
-            <th scope="col">Connected Since</th>
-        </tr>
-    </thead>
-
-{% for users in all_online %}
-<tbody>
-    <tr>
-
-        <td>{{ users.login }}</td>
-        <td>{{ users.r_ip }}</td>
-        <td>{{ users.v_ip }}</td>
-        <td>{{ users.online_since }}</td>
-    </tr>
-</tbody>
-{% endfor %}
-</table>
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Real Address</th>
+                <th scope="col">V.Address</th>
+                <th scope="col">Connected Since</th>
+            </tr>
+        </thead>
+        {% for users in all_online %}
+        <tbody>
+            <tr>
+                <td>{{ users.login }}</td>
+                <td>{{ users.r_ip }}</td>
+                <td>{{ users.v_ip }}</td>
+                <td>{{ users.online_since }}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
 
 
     <p>Total Online: {{ total_online }}</p>
     <p></p>
+    <div class="col-xs-12" style="height:25px;"></div>
 
-    <h1 class="h3 text-gray-900 mb-4">List of OpenVPN Users</h1>
+
+    <h4 class="h4 text-gray-900 mb-4">List of OpenVPN Users</h4>
 
 <table class="table table-bordered">
 

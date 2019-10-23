@@ -44,10 +44,13 @@
     <button type='submit' class="btn btn-primary">Reload Rules</button>
 </form>
 
+<div class="col-xs-12" style="height:25px;"></div>
+
 <div>
 
-        <h2 class="h4 text-gray-900 mb-4">Add New Rule</h2>
-            <form action="add_rule" method="post" class="form-group">{% csrf_token %}
+        <h4 class="h4 text-gray-900 mb-4">Add New Rule</h4>
+
+            <form action="add_rule" method="post" >{% csrf_token %}
                 <div class=""><label>Priority:  </label>{{ form.priority }}</div>
                 <div class=""><label>Table:  </label>{{ form.table }}</div>
                 <div class=""><label>IPV:  </label>{{ form.ipv }}</div>
@@ -57,19 +60,24 @@
                 <button type="submit" class="btn btn-success">Add Rule</button>
             </form>
 
+
 </div>
 
 <p class="row"></p>
 
         <p></p>
+        <div class="col-xs-12" style="height:25px;"></div>
 
-{% if messages %}
+
+{% if messages %}<div class="alert alert-warning">
 <ul class="messages">
     {% for message in messages %}
     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
     {% endfor %}
 </ul>
+    </div>
 {% endif %}
+
 
 <p></p>
 
@@ -77,7 +85,7 @@
     <button type='submit' class="btn btn-success">Commit Rules</button>
 </form>
 
-<h1 class="h3 text-gray-900 mb-4">List of Rules</h1>
+<h4 class="h4 text-gray-900 mb-4">List of Rules</h4>
 
 <table class="table table-bordered">
 

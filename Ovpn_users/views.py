@@ -105,4 +105,19 @@ def list_ovpn_user(request):
     return HttpResponseRedirect('ovpn_users/ovpn_users.html')
 
 
+def revoke_ovpn_user(request):
+    username_r = request.POST['username_r']
+
+    if request.method == 'POST':
+        import os
+        revoke_cmd = 'openssl ca -config /usr/easyrsa3/pki/safessl-easyrsa.cnf -revoke /etc/openvpn/keys/' + \
+                     username_r + '.crt ' + ' -batch -key passwd'
+        print(revoke_cmd + ' ' + strftime("%Y-%m-%d %H:%M:%S", gmtime()), file=open("log.txt", "a"))
+        os.system(revoke_cmd)
+
+    messages.info(request, 'User is successfully revoked!')
+
+    return HttpResponseRedirect('ovpn_users/ovpn_users.html')
+
+
 

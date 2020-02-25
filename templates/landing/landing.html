@@ -21,13 +21,13 @@
 
 <h1 class="h2 text-gray-900 mb-4 text-center">Firewall-cmd Web Administration Panel</h1>
 
-<div class="container">
+
         <div class="row">
             <div class="col-lg-4 offset-lg-4">
                 <h4 class="small font-weight-bold">Today is {{ today }}</h4>
             </div>
         </div>
-
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <div class="btn-group btn-group-lg" role="group" aria-label="menu">
         <form action="{% url 'home' %}">
             <button type="submit" class="btn btn-primary">Home</button>
@@ -37,8 +37,11 @@
             <button type="submit" class="btn btn-danger">Admin Panel</button>
         </form>
         </div>
-
+</ul>
 <p></p>
+
+
+<div id="content">
 
 <form action='{% url 'action_url' %}' method='POST'>{% csrf_token %}
     <button type='submit' class="btn btn-primary">Reload Rules</button>

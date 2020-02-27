@@ -21,7 +21,7 @@ def ovpn_users(request):
     allouser = Ouser.objects.all()
     all_online = OnlineUser.objects.all()
     context = {'allouser': allouser}
-    paginator = Paginator(allouser, 20)  # Show 20 contacts per page.
+    paginator = Paginator(allouser, 25)  # Show 20 contacts per page.
 
     page_number = request.GET.get('page')
     allouser = paginator.get_page(page_number)

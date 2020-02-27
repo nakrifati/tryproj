@@ -117,6 +117,25 @@
     </tr>
 </tbody>
 {% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if allrules.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ allrules.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ allrules.number }} of {{ allrules.paginator.num_pages }}.
+        </span>
+
+        {% if allrules.has_next %}
+            <a href="?page={{ allrules.next_page_number }}">next</a>
+            <a href="?page={{ allrules.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
 </table>
 
 <p></p>

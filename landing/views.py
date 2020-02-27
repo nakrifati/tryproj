@@ -8,6 +8,8 @@ from django.http import HttpResponseRedirect
 from xml.etree import ElementTree as ET
 from django.contrib.auth.decorators import login_required
 import os
+from django.core.paginator import Paginator
+from django.shortcuts import render
 
 root = ET.parse('templates/testdata/direct.xml').getroot()
 target_xml = 'templates/testdata/catalogs.xml'
@@ -26,6 +28,10 @@ def landing(request):
 
     allrules = Rule.objects.all()
     context = {'allrules': allrules}
+    paginator = Paginator(allrules, 30)  # Show 20 contacts per page.
+
+    page_number = request.GET.get('page')
+    allrules = paginator.get_page(page_number)
 
     return render(request, 'landing/landing.html', locals())
 

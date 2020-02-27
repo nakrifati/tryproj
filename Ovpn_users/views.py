@@ -8,6 +8,8 @@ from os.path import isfile, join
 import telnetlib
 from landing.models import OnlineUser
 from time import gmtime, strftime
+from django.core.paginator import Paginator
+from django.shortcuts import render
 
 
 CCD_address = 'C:/app/openvpn/ccd/'
@@ -19,6 +21,10 @@ def ovpn_users(request):
     allouser = Ouser.objects.all()
     all_online = OnlineUser.objects.all()
     context = {'allouser': allouser}
+    paginator = Paginator(allouser, 20)  # Show 20 contacts per page.
+
+    page_number = request.GET.get('page')
+    allouser = paginator.get_page(page_number)
     result = -1
 
     HOST = "localhost"

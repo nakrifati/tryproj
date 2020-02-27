@@ -1,4 +1,5 @@
 from django.db import models
+from django.views.generic import ListView
 
 Chain_choices = (
     ('FORWARD','FORWARD'),
@@ -65,4 +66,6 @@ class OnlineUser(models.Model):
         return "%s %s %s %s" % (self.login, self.r_ip, self.v_ip, self.online_since)
 
 
-
+class ContactList(ListView):
+    paginate_by = 10
+    model = Ouser

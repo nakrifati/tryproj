@@ -128,6 +128,11 @@
 {% endfor %}
 </table>
 
+<p>Total Online: {{ total_users }}</p>
+<p></p>
+
+
+
         <form action='{% url 'list_ovpn_user' %}' method='POST'>{% csrf_token %}
             <p></p>
             <button type='submit' class="btn btn-primary">Load OpenVPN Users from server</button>

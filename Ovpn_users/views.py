@@ -62,7 +62,12 @@ def ovpn_users(request):
                 save_online.save()
                 save_online.clean()
 
+    import os
+
+    count_users = len(next(os.walk('/etc/openvpn/ccd/'))[2])
+
     total_online = result
+    total_users = count_users
     fh.close()
 
     return render(request, 'ovpn_users/ovpn_users.html', locals())

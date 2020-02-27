@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
+{% load django_bootstrap_breadcrumbs %}
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -21,6 +23,14 @@
     <h2 class="h2 text-gray-900 mb-4 text-center">OpenVPN User Web Administration Panel</h2>
 
 <p></p>
+    {% block breadcrumbs %}
+        {% breadcrumb "Home" "/" %}
+        {% breadcrumb "OpenVPN Users Panel" "ovpn_users" %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+
+<p></p>
+
 
         <div style="display:inline-block; vertical-align: middle;">
         <form class="form-inline" action="{% url 'home' %}">

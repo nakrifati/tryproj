@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 import os
 from django.core.paginator import Paginator
 from django.shortcuts import render
+from django.db.models import Q
 
 root = ET.parse('templates/testdata/direct.xml').getroot()
 target_xml = 'templates/testdata/catalogs.xml'
@@ -100,4 +101,17 @@ def export_to_xml(request):
         messages.info(request, 'Rules have been exported!')
         return HttpResponseRedirect('landing/')
 
+
+def post_list(request):
+    posts_list = Rule.objects.all()
+    query = request.GET.get('q')
+    if query:
+        posts_list = Rule.objects.filter(
+            Q(rule_value__icontains=query)
+        ).distinct()
+
+    context = {
+        'posts': posts_list
+    }
+    return render(request, "landing/landing.html", context)
 

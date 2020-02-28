@@ -118,6 +118,25 @@
 </tbody>
 {% endfor %}
 
+
+<form action="{% url 'post_list' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+  <button type='submit' class="btn btn-primary">Search</button>
+</form>
+
+
+{% for post in posts %}
+
+    <tr>
+        <td>{{ post.priority }}</td>
+        <td>{{ post.table }}</td>
+        <td>{{ post.ipv }}</td>
+        <td>{{ post.chain }}</td>
+        <td>{{ post.rule_value }}</td>
+    </tr>
+
+{% endfor %}
+
 <ul class="pagination">
 
         {% if allrules.has_previous %}

@@ -80,6 +80,7 @@
 
         <h4 class="h4 text-gray-900 mb-4">Online OpenVPN Users</h4>
 
+
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -108,6 +109,13 @@
 
 
     <h4 class="h4 text-gray-900 mb-4">List of OpenVPN Users</h4>
+
+        <form action="{% url 'user_list' %}" method="get">
+  <input name="q" type="text" class="form-control" placeholder="Search...">
+    <p></p>
+  <button type='submit' class="btn btn-primary">Search</button>
+    <p></p>
+</form>
 
 <table class="table table-bordered">
 
@@ -144,6 +152,15 @@
         {% endif %}
 
 </ul>
+
+{% for post in posts %}
+
+    <tr>
+        <td>{{ post.name }}</td>
+        <td>{{ post.ip }}</td>
+    </tr>
+
+{% endfor %}
 
 </table>
 

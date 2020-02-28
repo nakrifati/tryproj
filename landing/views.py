@@ -113,5 +113,5 @@ def post_list(request):
     context = {
         'posts': posts_list
     }
-    return render(request, "landing/landing.html", context)
+    return render(request, "landing/landing.html", context, locals())
 

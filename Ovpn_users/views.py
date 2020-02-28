@@ -10,6 +10,7 @@ from landing.models import OnlineUser
 from time import gmtime, strftime
 from django.core.paginator import Paginator
 from django.shortcuts import render
+from django.db.models import Q
 
 
 CCD_address = 'C:/app/openvpn/ccd/'
@@ -136,4 +137,16 @@ def revoke_ovpn_user(request):
     return HttpResponseRedirect('ovpn_users/ovpn_users.html')
 
 
+def user_list(request):
+    posts_list = Ouser.objects.all()
+    query = request.GET.get('q')
+    if query:
+        posts_list = Ouser.objects.filter(
+            Q(name__icontains=query) | Q(ip__icontains=query)
+        ).distinct()
 
+    context = {
+        'posts': posts_list
+    }
+    
+    return render(request, "ovpn_users/ovpn_users.html", context, locals())

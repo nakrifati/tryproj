@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'create_ovpn_user', views.create_ovpn_user, name='create_ovpn_user'),
     url(r'list_ovpn_user', views.list_ovpn_user, name='list_ovpn_user'),
     url(r'revoke_ovpn_user', views.revoke_ovpn_user, name='revoke_ovpn_user'),
+    url(r'user_list', views.user_list, name='user_list'),
 
 ]
 

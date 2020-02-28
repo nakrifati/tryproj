@@ -94,6 +94,13 @@
 
 <h4 class="h4 text-gray-900 mb-4">List of Rules</h4>
 
+<form action="{% url 'post_list' %}" method="get">
+  <input name="q" type="text" class="form-control" placeholder="Search...">
+    <p></p>
+  <button type='submit' class="btn btn-primary">Search</button>
+    <p></p>
+</form>
+
 <table class="table table-bordered">
 
     <thead>
@@ -117,12 +124,6 @@
     </tr>
 </tbody>
 {% endfor %}
-
-
-<form action="{% url 'post_list' %}" method="get">
-  <input name="q" type="text" placeholder="Search...">
-  <button type='submit' class="btn btn-primary">Search</button>
-</form>
 
 
 {% for post in posts %}

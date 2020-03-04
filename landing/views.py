@@ -22,6 +22,7 @@ def landing(request):
     form = RuleForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
+        form.rule_value = request.POST['rule_value']
         print(request.POST)
         save_form = form.save()
 

@@ -91,9 +91,16 @@ def index(request):
 
 def create_ovpn_user(request):
     username = request.POST['username']
-    out_ip = request.POST['out_ip']
 
     if request.method == 'POST':
+
+        if request.POST.get('out_all', False):
+            out_ip = '0.0.0.0/0'
+            print(out_ip)
+        else:
+            out_ip = request.POST['out_ip']
+            print(out_ip)
+
         import os
         my_comd = './new-vpn-user-auto.sh ' + username + ' ' + out_ip
         print(my_comd + ' ' + strftime("%Y-%m-%d %H:%M:%S", gmtime()), file=open("log.txt", "a"))

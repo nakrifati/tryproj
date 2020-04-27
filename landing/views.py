@@ -12,12 +12,25 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.db.models import Q
 
-root = ET.parse('templates/testdata/direct.xml').getroot()
 target_xml = 'templates/testdata/catalogs.xml'
 
 
 @login_required
 def landing(request):
+    root = ET.parse('templates/testdata/direct.xml').getroot()
+
+    rules = Rule.objects.all()
+    rules.delete()
+
+    for type_tag in root.iter('rule'):
+        table = type_tag.get('table')
+        ipv = type_tag.get('ipv')
+        chain = type_tag.get('chain')
+        priority = type_tag.get('priority')
+        print(type_tag.text)
+        p = Rule(priority=priority, table=table, ipv=ipv, chain=chain, rule_value=type_tag.text)
+        p.save()
+        p.clean()
 
     form = RuleForm(request.POST or None)
 
@@ -44,6 +57,8 @@ def index(request):
 
 
 def action_url(request):
+    root = ET.parse('templates/testdata/direct.xml').getroot()
+
     if request.method == "POST":
         print(request.POST)
         rules = Rule.objects.all()

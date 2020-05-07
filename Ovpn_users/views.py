@@ -11,6 +11,8 @@ from time import gmtime, strftime
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.db.models import Q
+from landing.models import Rule
+from xml.etree import ElementTree as ET
 
 
 CCD_address = 'C:/app/openvpn/ccd/'
@@ -107,6 +109,22 @@ def create_ovpn_user(request):
         os.system(my_comd)
 
     messages.info(request, 'User Is Added to OpenVPN!')
+
+    root = ET.parse('templates/testdata/direct.xml').getroot()
+
+    rules = Rule.objects.all()
+    rules.delete()
+
+    for type_tag in root.iter('rule'):
+        table = type_tag.get('table')
+        ipv = type_tag.get('ipv')
+        chain = type_tag.get('chain')
+        priority = type_tag.get('priority')
+        print(type_tag.text)
+        p = Rule(priority=priority, table=table, ipv=ipv, chain=chain, rule_value=type_tag.text)
+        p.save()
+        p.clean()
+
     return list_ovpn_user(request)
 
 

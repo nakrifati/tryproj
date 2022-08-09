@@ -17,7 +17,7 @@ else
         OUT_IP=$2
 fi
 
-EMAIL="administrator@abr-region.ru"
+EMAIL="administrator@a.ru"
 VPN_ZIP=/usr/ovpn-zip
 OPENVPN_KEYS=/etc/openvpn/keys
 
